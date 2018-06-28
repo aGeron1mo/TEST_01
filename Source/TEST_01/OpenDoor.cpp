@@ -22,6 +22,9 @@ void UOpenDoor::BeginPlay()
 	// ...
 	Object = GetOwner();
 	CurrentRorartor = Object->GetActorRotation();
+	if (!OpenDoorTrigger) {
+		UE_LOG(LogTemp, Error, TEXT("TRIGGER FOR OPEN DOOR NOT SETUP!!!"));
+	}
 	
 }
 
@@ -32,6 +35,12 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// ...
+	if (OpenDoorTrigger) {
+		if (OpenDoorTrigger->IsOverlappingActor(GetWorld()->GetFirstPlayerController()->GetPawn())
+			&& !IsOPen) {OpenDoor();}
+		if (!OpenDoorTrigger->IsOverlappingActor(GetWorld()->GetFirstPlayerController()->GetPawn())
+			&& IsOPen) {CloseDoor();}
+	}
 }
 
 void UOpenDoor::OpenDoor()
