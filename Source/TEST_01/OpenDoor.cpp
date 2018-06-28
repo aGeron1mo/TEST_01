@@ -46,12 +46,14 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 void UOpenDoor::OpenDoor()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Open Door"));
+	Object->SetActorRotation(FRotator(CurrentRorartor.Pitch, CurrentRorartor.Yaw + OpenDoorAngle, CurrentRorartor.Roll));
 	IsOPen = true;
 }
 
 void UOpenDoor::CloseDoor()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Close Door"));
+	Object->SetActorRotation(CurrentRorartor);
 	IsOPen = false;
 }
 
