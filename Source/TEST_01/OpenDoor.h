@@ -32,6 +32,9 @@ private:
 		int OpenDoorAngle;
 	UPROPERTY(EditAnywhere)
 		ATriggerVolume* OpenDoorTrigger;
+	UPROPERTY(EditAnywhere)
+		float OpenDoorDelay;
+	float TimeForCloseDoor;
 
 	void OpenDoor();
 	void CloseDoor();
